@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulario PTS · LE-2 · Desarticulación del Mercado Ilícito · GESEG</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,800;1,400;1,800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+:root{
+  --bg:#F4F4F4;--surface:#FFFFFF;--card:#FFFFFF;--card2:#F7F8FA;
+  --navy:#002855;--cobalt:#0057A8;--cobalt2:#00468A;
+  --gold:#C8A84B;--gold2:#9C7A2E;
+  --gold-bg:rgba(200,168,75,.13);--gold-brd:rgba(200,168,75,.38);
+  --stl-bg:rgba(0,87,168,.07);--stl-brd:rgba(0,87,168,.22);
+  --teal:#0E9F6E;--teal-bg:rgba(14,159,110,.09);--teal-brd:rgba(14,159,110,.25);
+  --orange:#E07A28;--orange-d:#B85C00;
+  --orange-bg:rgba(224,122,40,.09);--orange-brd:rgba(224,122,40,.30);
+  --accent:#D6534A;--acc2:#C0392B;
+  --acc-bg:rgba(214,83,74,.08);--acc-brd:rgba(214,83,74,.28);
+  --border:rgba(0,40,85,.11);--brd2:rgba(0,40,85,.06);
+  --ink:#1C2B3A;--ink2:#3D5568;--ink3:#5A6878;
+  --r:10px;--r2:16px;--r3:24px;
+  --sh:0 4px 24px rgba(0,40,85,.07);
+  --sh2:0 2px 12px rgba(0,40,85,.05);
+  --font-d:'Fraunces',Georgia,serif;
+  --font-b:'Space Grotesk',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-b);background:var(--bg);color:var(--ink);min-height:100vh;font-size:15px;line-height:1.7}
+
+.stripe{height:3px;background:linear-gradient(90deg,var(--cobalt),var(--gold),var(--teal),var(--accent),var(--cobalt));background-size:400% 100%;animation:sA 6s linear infinite}
+@keyframes sA{0%{background-position:0%}100%{background-position:400%}}
+
+.topbar{background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;position:sticky;top:0;z-index:100}
+.tb-brand{display:flex;align-items:center;gap:14px}
+.tb-name{font-weight:700;color:var(--navy);font-size:.95em;line-height:1.3}
+.tb-name span{display:block;font-weight:400;font-size:.78em;color:var(--ink2)}
+.pill{font-size:.72em;padding:3px 11px;border-radius:20px;font-weight:600;white-space:nowrap}
+.pill-stl{background:var(--stl-bg);border:1px solid var(--stl-brd);color:var(--cobalt)}
+.pill-gold{background:var(--gold-bg);border:1px solid var(--gold-brd);color:var(--gold2)}
+.pill-teal{background:var(--teal-bg);border:1px solid var(--teal-brd);color:var(--teal)}
+.pill-acc{background:var(--acc-bg);border:1px solid var(--acc-brd);color:var(--accent)}
+.pill-orange{background:var(--orange-bg);border:1px solid var(--orange-brd);color:var(--orange-d)}
+.pill-navy{background:rgba(0,40,85,.08);border:1px solid rgba(0,40,85,.22);color:var(--navy)}
+
+.hero{position:relative;background:var(--navy);padding:48px 24px 44px;overflow:hidden;text-align:center;color:#fff}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:32px 32px}
+.hero-glow{position:absolute;width:420px;height:420px;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);filter:blur(90px);opacity:.35;pointer-events:none}
+.hero-inner{position:relative;max-width:780px;margin:0 auto}
+.hero h1{font-family:var(--font-d);font-size:clamp(1.5em,3.5vw,2.2em);font-weight:800;margin-bottom:.3em;line-height:1.2}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero p{font-size:.92em;opacity:.82;max-width:600px;margin:0 auto;line-height:1.7}
+.doc-badge{display:inline-block;font-size:.72em;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);padding:3px 14px;border-radius:20px;margin-bottom:14px;font-weight:500}
+
+.wrap{max-width:920px;margin:0 auto;padding:24px 16px 60px}
+.sec-title{font-family:var(--font-d);font-size:1.35em;font-weight:700;color:var(--navy);margin:32px 0 16px;padding-bottom:8px;border-bottom:2px solid var(--gold)}
+
+/* PTS Card */
+.pts-card{background:var(--card);border-radius:var(--r2);border:1px solid var(--border);box-shadow:var(--sh);margin-bottom:28px;overflow:hidden}
+.pts-header{padding:18px 22px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--brd2)}
+.pts-code{font-family:var(--font-d);font-size:1.3em;font-weight:800;min-width:72px}
+.pts-title{font-weight:600;font-size:.95em;color:var(--ink);line-height:1.35}
+.pts-title small{display:block;font-size:.8em;font-weight:400;color:var(--ink3)}
+
+.pts-body{padding:20px 22px}
+.pts-section{margin-bottom:20px}
+.pts-section-hdr{font-size:.78em;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:6px 12px;border-radius:6px;margin-bottom:10px;display:inline-block}
+.sh-stl{background:var(--stl-bg);color:var(--cobalt)}
+.sh-gold{background:var(--gold-bg);color:var(--gold2)}
+.sh-teal{background:var(--teal-bg);color:var(--teal)}
+.sh-acc{background:var(--acc-bg);color:var(--accent)}
+.sh-orange{background:var(--orange-bg);color:var(--orange-d)}
+.sh-navy{background:rgba(0,40,85,.08);color:var(--navy)}
+
+.fld{margin-bottom:14px}
+.lbl{display:block;font-size:.78em;font-weight:600;color:var(--ink2);margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em}
+.fld input,.fld textarea,.fld select{width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:var(--r);font-family:var(--font-b);font-size:.88em;background:var(--card2);color:var(--ink);transition:border-color .2s,box-shadow .2s}
+.fld input:focus,.fld textarea:focus,.fld select:focus{outline:none;border-color:var(--cobalt);box-shadow:0 0 0 3px rgba(0,87,168,.1)}
+.fld textarea{min-height:60px;resize:vertical}
+.hint{font-size:.72em;color:var(--ink3);margin-top:3px}
+
+.geo-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:600px){.geo-grid{grid-template-columns:1fr}}
+.geo-grid .fld{margin-bottom:8px}
+
+.op-row{background:var(--card2);border-radius:var(--r);padding:10px 14px;margin-bottom:8px;border-left:3px solid var(--cobalt);display:flex;gap:10px;align-items:baseline}
+.op-code{font-weight:700;font-size:.82em;color:var(--cobalt);min-width:60px;flex-shrink:0}
+.op-desc{font-size:.88em;color:var(--ink2)}
+
+.ind-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:.88em}
+.ind-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+.status-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.status-opt{position:relative}
+.status-opt input{position:absolute;opacity:0;pointer-events:none}
+.status-opt label{display:inline-flex;align-items:center;gap:5px;padding:6px 14px;border-radius:20px;border:1px solid var(--border);font-size:.82em;font-weight:500;cursor:pointer;transition:all .2s;background:var(--card2)}
+.status-opt input:checked+label{border-color:var(--cobalt);background:var(--stl-bg);color:var(--cobalt);font-weight:700}
+
+.sem-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.sem-opt{position:relative}
+.sem-opt input{position:absolute;opacity:0;pointer-events:none}
+.sem-opt label{display:inline-flex;align-items:center;gap:5px;padding:6px 16px;border-radius:20px;border:2px solid var(--border);font-size:.82em;font-weight:600;cursor:pointer;transition:all .2s}
+.sem-verde label{color:#0E9F6E}
+.sem-amarillo label{color:#C8A84B}
+.sem-rojo label{color:#D6534A}
+.sem-opt input:checked+label.sv{border-color:#0E9F6E;background:rgba(14,159,110,.12)}
+.sem-opt input:checked+label.sa{border-color:#C8A84B;background:rgba(200,168,75,.12)}
+.sem-opt input:checked+label.sr{border-color:#D6534A;background:rgba(214,83,74,.12)}
+
+.info-box{padding:12px 16px;border-radius:var(--r);margin-bottom:12px;font-size:.85em;line-height:1.6;border-left:3px solid}
+.ib-stl{background:var(--stl-bg);border-color:var(--cobalt);color:var(--cobalt2)}
+.ib-gold{background:var(--gold-bg);border-color:var(--gold);color:var(--gold2)}
+.ib-teal{background:var(--teal-bg);border-color:var(--teal);color:#0a7d56}
+.ib-acc{background:var(--acc-bg);border-color:var(--accent);color:var(--acc2)}
+
+.meta-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.meta-tag{font-size:.72em;padding:2px 9px;border-radius:12px;font-weight:600}
+
+.footer{background:var(--navy);color:rgba(255,255,255,.6);text-align:center;padding:20px;font-size:.75em;line-height:1.7}
+.footer b{color:rgba(255,255,255,.85)}
+
+.btn-print{position:fixed;bottom:20px;right:20px;background:var(--navy);color:#fff;border:none;padding:10px 20px;border-radius:var(--r);cursor:pointer;font-family:var(--font-b);font-weight:600;font-size:.85em;box-shadow:var(--sh);z-index:200;display:flex;align-items:center;gap:6px;transition:transform .15s}
+.btn-print:hover{transform:translateY(-2px)}
+@media print{.btn-print,.topbar,.stripe{display:none!important}.hero{padding:24px!important}.wrap{padding:12px!important}.pts-card{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="stripe"></div>
+
+<div class="topbar">
+  <div class="tb-brand">
+    <div style="background:#fff;border-radius:7px;padding:6px 14px;display:flex;align-items:center;box-shadow:0 1px 6px rgba(0,0,0,.12);">
+  <div style="display:flex;flex-direction:column;align-items:center;line-height:1.2;">
+    <span style="font-weight:800;font-size:1.2em;color:#002855;letter-spacing:.05em;">GESEG</span>
+    <span style="font-size:.55em;font-weight:600;color:#0057A8;letter-spacing:.03em;">Gestión de la Seguridad S.A.S.</span>
+  </div>
+</div>
+    <div style="width:1px;height:28px;background:rgba(0,40,85,.14);flex-shrink:0;"></div>
+    <div class="tb-name">OSCC — Barranquilla 2026<span>Formulario PTS · LE-2 · Hurto de Vehículos</span></div>
+  </div>
+  <div style="display:flex;gap:7px;flex-wrap:wrap;">
+    <span class="pill pill-gold">LE-2</span>
+    <span class="pill pill-gold">4 Problemas Territoriales</span>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow" style="background:rgba(200,168,75,.35)"></div>
+  <div class="hero-inner">
+    <div class="doc-badge">Ficha Técnica Formulario · Problema Territorial de Seguridad · LE-2</div>
+    <h1>⚖️ Desarticulación del Mercado Ilícito</h1>
+    <p>Reducir la demanda y la rentabilidad del mercado ilícito de autopartes mediante el censo, la trazabilidad, la persecución penal y patrimonial, y el control del canal digital.</p>
+    <div style="margin-top:16px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+      <a href="#pts04" class="pill pill-gold" style="text-decoration:none;cursor:pointer">PTS-04</a>
+<a href="#pts05" class="pill pill-gold" style="text-decoration:none;cursor:pointer">PTS-05</a>
+<a href="#pts06" class="pill pill-gold" style="text-decoration:none;cursor:pointer">PTS-06</a>
+<a href="#pts07" class="pill pill-gold" style="text-decoration:none;cursor:pointer">PTS-07</a>
+
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="info-box ib-gold" style="margin-bottom:24px">
+    <strong>Instrucciones:</strong> Diligencie cada ficha PTS con la información territorial actualizada. La <strong>georreferenciación</strong> es el dato central: registre coordenadas, polígonos y cuadrantes de cada intervención. Actualice el estado y el semáforo en cada ciclo de reporte conforme al Tablero de Control del Plan Operacional. Cada ficha debe mantener trazabilidad completa hacia el Diagnóstico Estratégico.
+  </div>
+
+  <div class="sec-title">LE-2 — Fichas de Acción Territorial (PTS-04, PTS-05, PTS-06, PTS-07)</div>
+
+  
+    <div class="pts-card" id="pts04">
+      <div class="pts-header" style="background:linear-gradient(135deg,#C8A84B11,#C8A84B05)">
+        <span class="pts-code" style="color:#C8A84B">PTS-04</span>
+        <div class="pts-title">Censo y caracterización del mercado de partes usadas<small>PRY-04 · LE-2 · HC-4 · HP1 · INS-5</small></div>
+      </div>
+      <div class="pts-body">
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Problema Territorial Identificado</div>
+          <div class="info-box ib-gold">No existe un censo georreferenciado del comercio de autopartes y moto-partes usadas.</div>
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Objetivo de la Acción</div>
+          <p style="font-size:.9em;color:var(--ink2);margin-bottom:8px">Censar y caracterizar el comercio físico de autopartes y moto-partes en zonas priorizadas.</p>
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">📍 Georreferenciación y Focalización Territorial</div>
+          <div class="info-box ib-gold" style="margin-bottom:12px"><strong>Foco territorial:</strong> Georreferenciación puntual de cada establecimiento censado.</div>
+          <div class="geo-grid">
+            <div class="fld"><label class="lbl">Localidad(es)</label><input type="text" placeholder="Ej: Norte-Centro Histórico, Suroccidente…"></div>
+            <div class="fld"><label class="lbl">Barrio(s) / Polígono(s)</label><input type="text" placeholder="Ej: Centro, Barrio Abajo, Boston…"></div>
+            <div class="fld"><label class="lbl">Latitud</label><input type="text" placeholder="Ej: 10.9685"></div>
+            <div class="fld"><label class="lbl">Longitud</label><input type="text" placeholder="Ej: -74.7813"></div>
+            <div class="fld"><label class="lbl">Cuadrante(s) MEBAR</label><input type="text" placeholder="Ej: CAI Norte, Cuadrante 4-2…"></div>
+            <div class="fld"><label class="lbl">Corredor(es) Asociado(s)</label><input type="text" placeholder="Ej: Cordialidad–Galapa…"></div>
+            <div class="fld"><label class="lbl">Zona de Influencia (Radio)</label><input type="text" placeholder="Ej: 500 m"></div>
+            <div class="fld"><label class="lbl">Referencia Cartográfica</label><input type="text" placeholder="Ej: Mapa Leaflet hoja 3, Anexo…"></div>
+          </div>
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Acciones Operacionales</div>
+          <div class="op-row" style="border-left-color:#C8A84B">
+          <span class="op-code" style="color:#C8A84B">OP-04.1</span>
+          <span class="op-desc">Planeación, ficha censal y barrido de campo con georreferenciación</span>
+        </div>
+<div class="op-row" style="border-left-color:#C8A84B">
+          <span class="op-code" style="color:#C8A84B">OP-04.2</span>
+          <span class="op-desc">Caracterización del mercado: tipología y flujos</span>
+        </div>
+
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Indicadores de Seguimiento</div>
+          <div class="ind-row"><span class="ind-dot" style="background:#C8A84B"></span>Censo 100 % zonas priorizadas</div>
+<div class="ind-row"><span class="ind-dot" style="background:#C8A84B"></span>Informe de caracterización</div>
+<div class="ind-row"><span class="ind-dot" style="background:#C8A84B"></span>Nodos identificados</div>
+
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Responsable y Cronograma</div>
+          <div class="geo-grid">
+            <div class="fld"><label class="lbl">Responsable (R)</label><input type="text" value="OSCC" readonly style="font-weight:600"></div>
+            <div class="fld"><label class="lbl">Horizonte Temporal</label><input type="text" value="2026-S2 a 2027-S2 (8 meses)" readonly style="font-size:.82em"></div>
+          </div>
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Control y Seguimiento</div>
+          <div class="fld">
+            <label class="lbl">Estado Actual</label>
+            <div class="status-row">
+              <div class="status-opt"><input type="radio" name="estado_pts04" id="e1_pts04"><label for="e1_pts04">⬜ No Iniciado</label></div>
+              <div class="status-opt"><input type="radio" name="estado_pts04" id="e2_pts04"><label for="e2_pts04">📐 En Diseño</label></div>
+              <div class="status-opt"><input type="radio" name="estado_pts04" id="e3_pts04"><label for="e3_pts04">▶️ En Ejecución</label></div>
+              <div class="status-opt"><input type="radio" name="estado_pts04" id="e4_pts04"><label for="e4_pts04">✅ Consolidado</label></div>
+            </div>
+          </div>
+          <div class="fld">
+            <label class="lbl">Semáforo</label>
+            <div class="sem-row">
+              <div class="sem-opt sem-verde"><input type="radio" name="sem_pts04" id="sv_pts04"><label for="sv_pts04" class="sv">🟢 Verde</label></div>
+              <div class="sem-opt sem-amarillo"><input type="radio" name="sem_pts04" id="sa_pts04"><label for="sa_pts04" class="sa">🟡 Amarillo</label></div>
+              <div class="sem-opt sem-rojo"><input type="radio" name="sem_pts04" id="sr_pts04"><label for="sr_pts04" class="sr">🔴 Rojo</label></div>
+            </div>
+          </div>
+          <div class="geo-grid">
+            <div class="fld"><label class="lbl">Fecha de Última Actualización</label><input type="date"></div>
+            <div class="fld"><label class="lbl">Responsable del Registro</label><input type="text" placeholder="Nombre del funcionario"></div>
+          </div>
+          <div class="fld"><label class="lbl">Observaciones</label><textarea placeholder="Registre novedades, avances, alertas o bloqueos…"></textarea></div>
+        </div>
+
+      </div>
+    </div>
+    <div class="pts-card" id="pts05">
+      <div class="pts-header" style="background:linear-gradient(135deg,#C8A84B11,#C8A84B05)">
+        <span class="pts-code" style="color:#C8A84B">PTS-05</span>
+        <div class="pts-title">Régimen de trazabilidad y control del comercio de partes<small>PRY-05 · LE-2 · HC-4 · PISCC</small></div>
+      </div>
+      <div class="pts-body">
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Problema Territorial Identificado</div>
+          <div class="info-box ib-gold">Ausencia de mecanismo de registro y trazabilidad del origen de las partes.</div>
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Objetivo de la Acción</div>
+          <p style="font-size:.9em;color:var(--ink2);margin-bottom:8px">Diseñar, adoptar y verificar el régimen de registro y trazabilidad de partes usadas.</p>
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">📍 Georreferenciación y Focalización Territorial</div>
+          <div class="info-box ib-gold" style="margin-bottom:12px"><strong>Foco territorial:</strong> Establecimientos censados con priorización por riesgo; tablero georreferenciado.</div>
+          <div class="geo-grid">
+            <div class="fld"><label class="lbl">Localidad(es)</label><input type="text" placeholder="Ej: Norte-Centro Histórico, Suroccidente…"></div>
+            <div class="fld"><label class="lbl">Barrio(s) / Polígono(s)</label><input type="text" placeholder="Ej: Centro, Barrio Abajo, Boston…"></div>
+            <div class="fld"><label class="lbl">Latitud</label><input type="text" placeholder="Ej: 10.9685"></div>
+            <div class="fld"><label class="lbl">Longitud</label><input type="text" placeholder="Ej: -74.7813"></div>
+            <div class="fld"><label class="lbl">Cuadrante(s) MEBAR</label><input type="text" placeholder="Ej: CAI Norte, Cuadrante 4-2…"></div>
+            <div class="fld"><label class="lbl">Corredor(es) Asociado(s)</label><input type="text" placeholder="Ej: Cordialidad–Galapa…"></div>
+            <div class="fld"><label class="lbl">Zona de Influencia (Radio)</label><input type="text" placeholder="Ej: 500 m"></div>
+            <div class="fld"><label class="lbl">Referencia Cartográfica</label><input type="text" placeholder="Ej: Mapa Leaflet hoja 3, Anexo…"></div>
+          </div>
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Acciones Operacionales</div>
+          <div class="op-row" style="border-left-color:#C8A84B">
+          <span class="op-code" style="color:#C8A84B">OP-05.1</span>
+          <span class="op-desc">Diseño jurídico-técnico del instrumento de registro</span>
+        </div>
+<div class="op-row" style="border-left-color:#C8A84B">
+          <span class="op-code" style="color:#C8A84B">OP-05.2</span>
+          <span class="op-desc">Inspección, vigilancia y control: visitas y tablero de cumplimiento</span>
+        </div>
+
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Indicadores de Seguimiento</div>
+          <div class="ind-row"><span class="ind-dot" style="background:#C8A84B"></span>Establecimientos con trazabilidad ≥ 70 %</div>
+<div class="ind-row"><span class="ind-dot" style="background:#C8A84B"></span>Instrumento jurídico expedido</div>
+<div class="ind-row"><span class="ind-dot" style="background:#C8A84B"></span>Tablero activo</div>
+
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Responsable y Cronograma</div>
+          <div class="geo-grid">
+            <div class="fld"><label class="lbl">Responsable (R)</label><input type="text" value="OSCC + Control urbano" readonly style="font-weight:600"></div>
+            <div class="fld"><label class="lbl">Horizonte Temporal</label><input type="text" value="Diseño: 6 meses (2027-S1) · Verificación continua 2027–2029" readonly style="font-size:.82em"></div>
+          </div>
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Control y Seguimiento</div>
+          <div class="fld">
+            <label class="lbl">Estado Actual</label>
+            <div class="status-row">
+              <div class="status-opt"><input type="radio" name="estado_pts05" id="e1_pts05"><label for="e1_pts05">⬜ No Iniciado</label></div>
+              <div class="status-opt"><input type="radio" name="estado_pts05" id="e2_pts05"><label for="e2_pts05">📐 En Diseño</label></div>
+              <div class="status-opt"><input type="radio" name="estado_pts05" id="e3_pts05"><label for="e3_pts05">▶️ En Ejecución</label></div>
+              <div class="status-opt"><input type="radio" name="estado_pts05" id="e4_pts05"><label for="e4_pts05">✅ Consolidado</label></div>
+            </div>
+          </div>
+          <div class="fld">
+            <label class="lbl">Semáforo</label>
+            <div class="sem-row">
+              <div class="sem-opt sem-verde"><input type="radio" name="sem_pts05" id="sv_pts05"><label for="sv_pts05" class="sv">🟢 Verde</label></div>
+              <div class="sem-opt sem-amarillo"><input type="radio" name="sem_pts05" id="sa_pts05"><label for="sa_pts05" class="sa">🟡 Amarillo</label></div>
+              <div class="sem-opt sem-rojo"><input type="radio" name="sem_pts05" id="sr_pts05"><label for="sr_pts05" class="sr">🔴 Rojo</label></div>
+            </div>
+          </div>
+          <div class="geo-grid">
+            <div class="fld"><label class="lbl">Fecha de Última Actualización</label><input type="date"></div>
+            <div class="fld"><label class="lbl">Responsable del Registro</label><input type="text" placeholder="Nombre del funcionario"></div>
+          </div>
+          <div class="fld"><label class="lbl">Observaciones</label><textarea placeholder="Registre novedades, avances, alertas o bloqueos…"></textarea></div>
+        </div>
+
+      </div>
+    </div>
+    <div class="pts-card" id="pts06">
+      <div class="pts-header" style="background:linear-gradient(135deg,#C8A84B11,#C8A84B05)">
+        <span class="pts-code" style="color:#C8A84B">PTS-06</span>
+        <div class="pts-title">Portafolio de receptación, falsedad y lavado<small>PRY-06 · LE-2 · HC-4 · HC-7</small></div>
+      </div>
+      <div class="pts-body">
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Problema Territorial Identificado</div>
+          <div class="info-box ib-gold">Mercado de receptación activo sin persecución penal ni patrimonial focalizada.</div>
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Objetivo de la Acción</div>
+          <p style="font-size:.9em;color:var(--ink2);margin-bottom:8px">Construir portafolio priorizado contra receptadores, desguazaderos y financiadores.</p>
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">📍 Georreferenciación y Focalización Territorial</div>
+          <div class="info-box ib-gold" style="margin-bottom:12px"><strong>Foco territorial:</strong> Nodos identificados por PRY-04/05; georreferenciación de establecimientos objetivo.</div>
+          <div class="geo-grid">
+            <div class="fld"><label class="lbl">Localidad(es)</label><input type="text" placeholder="Ej: Norte-Centro Histórico, Suroccidente…"></div>
+            <div class="fld"><label class="lbl">Barrio(s) / Polígono(s)</label><input type="text" placeholder="Ej: Centro, Barrio Abajo, Boston…"></div>
+            <div class="fld"><label class="lbl">Latitud</label><input type="text" placeholder="Ej: 10.9685"></div>
+            <div class="fld"><label class="lbl">Longitud</label><input type="text" placeholder="Ej: -74.7813"></div>
+            <div class="fld"><label class="lbl">Cuadrante(s) MEBAR</label><input type="text" placeholder="Ej: CAI Norte, Cuadrante 4-2…"></div>
+            <div class="fld"><label class="lbl">Corredor(es) Asociado(s)</label><input type="text" placeholder="Ej: Cordialidad–Galapa…"></div>
+            <div class="fld"><label class="lbl">Zona de Influencia (Radio)</label><input type="text" placeholder="Ej: 500 m"></div>
+            <div class="fld"><label class="lbl">Referencia Cartográfica</label><input type="text" placeholder="Ej: Mapa Leaflet hoja 3, Anexo…"></div>
+          </div>
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Acciones Operacionales</div>
+          <div class="op-row" style="border-left-color:#C8A84B">
+          <span class="op-code" style="color:#C8A84B">OP-06.1</span>
+          <span class="op-desc">Estructuración del portafolio y equipos mixtos SIJIN–CTI–Fiscalía</span>
+        </div>
+<div class="op-row" style="border-left-color:#C8A84B">
+          <span class="op-code" style="color:#C8A84B">OP-06.2</span>
+          <span class="op-desc">Impulso procesal y persecución patrimonial</span>
+        </div>
+
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Indicadores de Seguimiento</div>
+          <div class="ind-row"><span class="ind-dot" style="background:#C8A84B"></span>Casos con imputación (creciente)</div>
+<div class="ind-row"><span class="ind-dot" style="background:#C8A84B"></span>Extinción de dominio radicada</div>
+<div class="ind-row"><span class="ind-dot" style="background:#C8A84B"></span>Informe semestral</div>
+
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Responsable y Cronograma</div>
+          <div class="geo-grid">
+            <div class="fld"><label class="lbl">Responsable (R)</label><input type="text" value="Fiscalía + SIJIN + CTI" readonly style="font-weight:600"></div>
+            <div class="fld"><label class="lbl">Horizonte Temporal</label><input type="text" value="Conformación: 4 meses (2026-S2) · Operación continua" readonly style="font-size:.82em"></div>
+          </div>
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Control y Seguimiento</div>
+          <div class="fld">
+            <label class="lbl">Estado Actual</label>
+            <div class="status-row">
+              <div class="status-opt"><input type="radio" name="estado_pts06" id="e1_pts06"><label for="e1_pts06">⬜ No Iniciado</label></div>
+              <div class="status-opt"><input type="radio" name="estado_pts06" id="e2_pts06"><label for="e2_pts06">📐 En Diseño</label></div>
+              <div class="status-opt"><input type="radio" name="estado_pts06" id="e3_pts06"><label for="e3_pts06">▶️ En Ejecución</label></div>
+              <div class="status-opt"><input type="radio" name="estado_pts06" id="e4_pts06"><label for="e4_pts06">✅ Consolidado</label></div>
+            </div>
+          </div>
+          <div class="fld">
+            <label class="lbl">Semáforo</label>
+            <div class="sem-row">
+              <div class="sem-opt sem-verde"><input type="radio" name="sem_pts06" id="sv_pts06"><label for="sv_pts06" class="sv">🟢 Verde</label></div>
+              <div class="sem-opt sem-amarillo"><input type="radio" name="sem_pts06" id="sa_pts06"><label for="sa_pts06" class="sa">🟡 Amarillo</label></div>
+              <div class="sem-opt sem-rojo"><input type="radio" name="sem_pts06" id="sr_pts06"><label for="sr_pts06" class="sr">🔴 Rojo</label></div>
+            </div>
+          </div>
+          <div class="geo-grid">
+            <div class="fld"><label class="lbl">Fecha de Última Actualización</label><input type="date"></div>
+            <div class="fld"><label class="lbl">Responsable del Registro</label><input type="text" placeholder="Nombre del funcionario"></div>
+          </div>
+          <div class="fld"><label class="lbl">Observaciones</label><textarea placeholder="Registre novedades, avances, alertas o bloqueos…"></textarea></div>
+        </div>
+
+      </div>
+    </div>
+    <div class="pts-card" id="pts07">
+      <div class="pts-header" style="background:linear-gradient(135deg,#C8A84B11,#C8A84B05)">
+        <span class="pts-code" style="color:#C8A84B">PTS-07</span>
+        <div class="pts-title">Control de la comercialización digital de partes<small>PRY-07 · LE-2 · Cap. VII diagnóstico · HP7</small></div>
+      </div>
+      <div class="pts-body">
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Problema Territorial Identificado</div>
+          <div class="info-box ib-gold">Canal digital anónimo que facilita la receptación sin trazabilidad.</div>
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Objetivo de la Acción</div>
+          <p style="font-size:.9em;color:var(--ink2);margin-bottom:8px">Reducir la venta anónima digital mediante monitoreo y cooperación con plataformas.</p>
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">📍 Georreferenciación y Focalización Territorial</div>
+          <div class="info-box ib-gold" style="margin-bottom:12px"><strong>Foco territorial:</strong> Monitoreo digital geolocalizado; correlación con zonas de concentración del fenómeno.</div>
+          <div class="geo-grid">
+            <div class="fld"><label class="lbl">Localidad(es)</label><input type="text" placeholder="Ej: Norte-Centro Histórico, Suroccidente…"></div>
+            <div class="fld"><label class="lbl">Barrio(s) / Polígono(s)</label><input type="text" placeholder="Ej: Centro, Barrio Abajo, Boston…"></div>
+            <div class="fld"><label class="lbl">Latitud</label><input type="text" placeholder="Ej: 10.9685"></div>
+            <div class="fld"><label class="lbl">Longitud</label><input type="text" placeholder="Ej: -74.7813"></div>
+            <div class="fld"><label class="lbl">Cuadrante(s) MEBAR</label><input type="text" placeholder="Ej: CAI Norte, Cuadrante 4-2…"></div>
+            <div class="fld"><label class="lbl">Corredor(es) Asociado(s)</label><input type="text" placeholder="Ej: Cordialidad–Galapa…"></div>
+            <div class="fld"><label class="lbl">Zona de Influencia (Radio)</label><input type="text" placeholder="Ej: 500 m"></div>
+            <div class="fld"><label class="lbl">Referencia Cartográfica</label><input type="text" placeholder="Ej: Mapa Leaflet hoja 3, Anexo…"></div>
+          </div>
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Acciones Operacionales</div>
+          <div class="op-row" style="border-left-color:#C8A84B">
+          <span class="op-code" style="color:#C8A84B">OP-07.1</span>
+          <span class="op-desc">Protocolo de cooperación con plataformas de compraventa</span>
+        </div>
+<div class="op-row" style="border-left-color:#C8A84B">
+          <span class="op-code" style="color:#C8A84B">OP-07.2</span>
+          <span class="op-desc">Monitoreo OSINT y judicialización de vendedores</span>
+        </div>
+
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Indicadores de Seguimiento</div>
+          <div class="ind-row"><span class="ind-dot" style="background:#C8A84B"></span>Publicaciones gestionadas</div>
+<div class="ind-row"><span class="ind-dot" style="background:#C8A84B"></span>Casos remitidos a PRY-06</div>
+<div class="ind-row"><span class="ind-dot" style="background:#C8A84B"></span>Protocolo suscrito</div>
+
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Responsable y Cronograma</div>
+          <div class="geo-grid">
+            <div class="fld"><label class="lbl">Responsable (R)</label><input type="text" value="MEBAR–SIJIN + Fiscalía" readonly style="font-weight:600"></div>
+            <div class="fld"><label class="lbl">Horizonte Temporal</label><input type="text" value="Protocolo: 5 meses (2027-S1) · Operación continua" readonly style="font-size:.82em"></div>
+          </div>
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Control y Seguimiento</div>
+          <div class="fld">
+            <label class="lbl">Estado Actual</label>
+            <div class="status-row">
+              <div class="status-opt"><input type="radio" name="estado_pts07" id="e1_pts07"><label for="e1_pts07">⬜ No Iniciado</label></div>
+              <div class="status-opt"><input type="radio" name="estado_pts07" id="e2_pts07"><label for="e2_pts07">📐 En Diseño</label></div>
+              <div class="status-opt"><input type="radio" name="estado_pts07" id="e3_pts07"><label for="e3_pts07">▶️ En Ejecución</label></div>
+              <div class="status-opt"><input type="radio" name="estado_pts07" id="e4_pts07"><label for="e4_pts07">✅ Consolidado</label></div>
+            </div>
+          </div>
+          <div class="fld">
+            <label class="lbl">Semáforo</label>
+            <div class="sem-row">
+              <div class="sem-opt sem-verde"><input type="radio" name="sem_pts07" id="sv_pts07"><label for="sv_pts07" class="sv">🟢 Verde</label></div>
+              <div class="sem-opt sem-amarillo"><input type="radio" name="sem_pts07" id="sa_pts07"><label for="sa_pts07" class="sa">🟡 Amarillo</label></div>
+              <div class="sem-opt sem-rojo"><input type="radio" name="sem_pts07" id="sr_pts07"><label for="sr_pts07" class="sr">🔴 Rojo</label></div>
+            </div>
+          </div>
+          <div class="geo-grid">
+            <div class="fld"><label class="lbl">Fecha de Última Actualización</label><input type="date"></div>
+            <div class="fld"><label class="lbl">Responsable del Registro</label><input type="text" placeholder="Nombre del funcionario"></div>
+          </div>
+          <div class="fld"><label class="lbl">Observaciones</label><textarea placeholder="Registre novedades, avances, alertas o bloqueos…"></textarea></div>
+        </div>
+
+      </div>
+    </div>
+
+</div>
+
+<div class="footer">
+  <div><b>OSCC Barranquilla 2026</b> · Fichas PTS · LE-2 · Desarticulación del Mercado Ilícito · USO RESERVADO</div>
+  <div>VIRTUS GLOBAL · Consultoría Fase 2 · Estrategia Integral Hurto de Vehículos 2026–2029 · Versión 1.0</div>
+</div>
+
+<button class="btn-print" onclick="window.print()">🖨️ Imprimir</button>
+
+</body>
+</html>
